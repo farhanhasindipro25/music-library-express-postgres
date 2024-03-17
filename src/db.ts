@@ -5,7 +5,7 @@ const pool = new Pool({
   host: "localhost",
   database: "musiclibrary",
   password: "test",
-  port: 5000,
+  port: 5432,
 });
 
-module.exports = pool;
+export default pool;

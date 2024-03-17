@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { AlbumRoutes } from "../modules/albums/albums.routes";
-const router = Router();
+const allroutes = Router();
 
 const moduleRoutes = [
   {
@@ -9,6 +9,6 @@ const moduleRoutes = [
   },
 ];
 
-moduleRoutes.forEach((route) => router.use(route.path, route.route));
+moduleRoutes.forEach((route) => allroutes.use(route.path, route.route));
 
-export default router;
+export default allroutes;

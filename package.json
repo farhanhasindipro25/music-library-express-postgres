@@ -2,9 +2,9 @@
   "name": "music-library-express-postgres",
   "version": "1.0.0",
   "description": "",
-  "main": "src/server.ts",
+  "main": "src/app.ts",
   "scripts": {
-    "start": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "start": "ts-node-dev --respawn --transpile-only src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

@@ -1,9 +1,8 @@
-import { Request, Router } from "express";
+import { Router } from "express";
+import { AlbumsController } from "./albums.controller";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.send("ds");
-});
+router.get("/", AlbumsController.getAlbums);
 
 export const AlbumRoutes = router;
