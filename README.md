@@ -19,10 +19,18 @@ artist_uid SERIAL PRIMARY KEY,
 name VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE album_artists(
+    uid SERIAL,
+    album_uid INT REFERENCES albums(album_uid), 
+    artist_uid INT REFERENCES artists(artist_uid), 
+    PRIMARY KEY (album_uid, artist_uid)
+);
+
 INSERT INTO album_artists (album_uid, artist_uid) VALUES (1, 1);
 INSERT INTO album_artists (album_uid, artist_uid) VALUES (1, 2);
 
 SELECT 
+    uid,
     albums.title, 
     albums.release_year, 
     albums.genre, 

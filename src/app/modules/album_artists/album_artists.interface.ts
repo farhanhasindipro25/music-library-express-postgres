@@ -9,5 +9,9 @@ export interface AlbumArtistsInterface {
 }
 
 export interface AlbumsArtistsInterface {
-  rows: { album: albumsInterface; artist: artistInterface };
+  rows: {
+    album_artist_uid: number;
+    album: albumsInterface;
+    artist: artistInterface;
+  };
 }
