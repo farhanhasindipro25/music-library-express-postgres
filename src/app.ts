@@ -11,4 +11,4 @@ app.use("/api/v1", allroutes);
 //   res.send("Music Library Server Running");
 // });
 
-app.listen(port, () => console.log(`App istening to port ${port}`));
+app.listen(port, () => console.log(`App listening to port ${port}`));
