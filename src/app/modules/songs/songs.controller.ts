@@ -13,6 +13,19 @@ const getSongs = (req: Request, res: Response) => {
   );
 };
 
+const getSongsByID = (req: Request, res: Response) => {
+  const id = parseInt(req.params.id);
+  pool.query(
+    SongsServices.GET_SONGS_BY_ID_FROM_DB,
+    [id],
+    (error: any, results: SongsInterface) => {
+      if (error) throw error;
+      res.status(200).json(results.rows);
+    }
+  );
+};
+
 export const SongsController = {
   getSongs,
+  getSongsByID,
 };

@@ -4,6 +4,6 @@ import { SongsController } from "./songs.controller";
 const router = Router();
 
 router.get("/", SongsController.getSongs);
-// router.get("/:id", ArtistsController.getArtistByID);
+router.get("/:id", SongsController.getSongsByID);
 
 export const SongRoutes = router;
