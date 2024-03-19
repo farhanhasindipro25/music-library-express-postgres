@@ -143,19 +143,24 @@ JOIN
 
 -- Get all songs with album title and artist title
 SELECT 
-    songs.song_uid,
-    songs.title AS song_title,
-    songs.duration,
     albums.title AS album_title,
-    artists.name AS artist_name
+    json_agg(json_build_object(
+        'song_uid', songs.song_uid,
+        'song_title', songs.title,
+        'duration', songs.duration,
+        'artist_name', artists.name
+    )) AS songs
 FROM 
-    songs
+    albums
 JOIN 
-    albums ON songs.album_uid = albums.album_uid
-JOIN
+    songs ON albums.album_uid = songs.album_uid
+JOIN 
     album_info ON albums.album_uid = album_info.album_uid
-JOIN
-    artists ON album_info.artist_uid = artists.artist_uid;
+JOIN 
+    artists ON album_info.artist_uid = artists.artist_uid
+GROUP BY 
+    albums.title;
+
 
 -- Get one song by ID
 SELECT 
@@ -208,25 +213,6 @@ FROM
 JOIN 
     songs ON albums.album_uid = songs.album_uid
 WHERE 
-    albums.album_uid = 1
-GROUP BY 
-    albums.album_uid, albums.title, albums.release_year, albums.genre;
-
-
-SELECT 
-    albums.album_uid,
-    albums.title AS album_title,
-    albums.release_year,
-    albums.genre,
-    json_agg(json_build_object(
-        'title', songs.title,
-        'duration', songs.duration
-    )) AS songs
-FROM 
-    albums
-JOIN 
-    songs ON albums.album_uid = songs.album_uid
-WHERE 
-    albums.album_uid = 1
+    albums.album_uid = $1
 GROUP BY 
     albums.album_uid, albums.title, albums.release_year, albums.genre;
