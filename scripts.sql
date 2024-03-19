@@ -216,3 +216,14 @@ WHERE
     albums.album_uid = $1
 GROUP BY 
     albums.album_uid, albums.title, albums.release_year, albums.genre;
+
+
+-- Create Users Table
+CREATE TABLE users(
+    user_uid SERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+-- Add users (Registration)

@@ -30,7 +30,7 @@ const getArtistByID = (req: Request, res: Response) => {
 const addArtist = (req: Request, res: Response) => {
   const { name } = req.body;
   pool.query(ArtistsServices.POST_ARTIST_INTO_DB, [name], (error: any) => {
-    if (error) throw error;
+    if (error) res.status(500).send("Internal Server Error");
     res.status(201).json({
       message: "Artist added successfully",
       artist: name,

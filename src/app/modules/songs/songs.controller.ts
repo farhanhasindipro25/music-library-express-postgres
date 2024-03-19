@@ -31,7 +31,7 @@ const addSong = (req: Request, res: Response) => {
     SongsServices.POST_SONG_INTO_DB,
     [title, duration, album_uid, artist_uid],
     (error: any) => {
-      if (error) throw error;
+      if (error) res.status(500).send("Internal Server Error");
       res.status(201).json({
         message: "Artist added successfully",
         artist: { title, duration, album_uid, artist_uid },

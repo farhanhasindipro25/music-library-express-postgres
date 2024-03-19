@@ -35,7 +35,7 @@ const addAlbum = (req: Request, res: Response) => {
     AlbumsServices.POST_ALBUM_INTO_DB,
     [title, release_year, genre, total_songs],
     (error: any) => {
-      if (error) throw error;
+      if (error) res.status(500).send("Internal Server Error");
       res.status(201).json({
         message: "Album added successfully",
         album: { title, release_year, genre, total_songs },
