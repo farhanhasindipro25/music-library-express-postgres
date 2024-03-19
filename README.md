@@ -50,3 +50,4 @@ album_uid INT REFERENCES albums(album_uid)
 );
 
 INSERT INTO songs (title, duration, album_uid,album_title) VALUES ('Papercut','04:03',1,'Hybrid Theory'),('Points of Authority','04:13',1,'Hybrid Theory'),('Runaway','03:03',1,'Hybrid Theory'),('A place for my head','04:43',1,'Hybrid Theory');
+
