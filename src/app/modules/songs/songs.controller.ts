@@ -5,7 +5,7 @@ import { SongsServices } from "./songs.services";
 
 const getSongs = (req: Request, res: Response) => {
   pool.query(
-    SongsServices.GET_SONGS_FROM_DB,
+    SongsServices.GET_SONGS_WITH_ALBUM_AND_ARTIST_FROM_DB,
     (error: any, results: SongsInterface) => {
       if (error) throw error;
       res.status(200).json(results.rows);

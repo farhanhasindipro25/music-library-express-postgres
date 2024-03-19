@@ -10,6 +10,7 @@ const getAlbumsAndArtists = (req: Request, res: Response) => {
       if (error) {
         throw error;
       }
+      console.log("first");
       res.status(200).json(results.rows);
     }
   );
