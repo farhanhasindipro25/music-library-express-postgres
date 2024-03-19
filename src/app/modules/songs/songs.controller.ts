@@ -25,7 +25,23 @@ const getSongsByID = (req: Request, res: Response) => {
   );
 };
 
+const addSong = (req: Request, res: Response) => {
+  const { title, duration, album_uid, artist_uid } = req.body;
+  pool.query(
+    SongsServices.POST_SONG_INTO_DB,
+    [title, duration, album_uid, artist_uid],
+    (error: any) => {
+      if (error) throw error;
+      res.status(201).json({
+        message: "Artist added successfully",
+        artist: { title, duration, album_uid, artist_uid },
+      });
+    }
+  );
+};
+
 export const SongsController = {
   getSongs,
   getSongsByID,
+  addSong,
 };

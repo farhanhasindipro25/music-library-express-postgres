@@ -34,7 +34,11 @@ JOIN
 WHERE
     songs.song_uid = $1;`;
 
+const POST_SONG_INTO_DB =
+  "INSERT INTO songs (title, duration, album_uid, artist_uid) VALUES ($1, $2, $3, $4)";
+
 export const SongsServices = {
   GET_SONGS_BY_ID_FROM_DB,
   GET_SONGS_WITH_ALBUM_AND_ARTIST_FROM_DB,
+  POST_SONG_INTO_DB,
 };
