@@ -3,6 +3,7 @@ import express from "express";
 import allroutes from "./app/routes/index";
 
 const app = express();
+app.use(express.json());
 const port = 5000;
 
 app.use("/api/v1", allroutes);

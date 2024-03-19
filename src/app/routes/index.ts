@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { AlbumRoutes } from "../modules/albums/albums.routes";
 import { ArtistRoutes } from "../modules/artists/artists.routes";
-import { AlbumsAndArtistsRoutes } from "../modules/album_artists/album_artists.routes";
+import { AlbumsAndArtistsRoutes } from "../modules/album_info/album_info.routes";
 import { SongRoutes } from "../modules/songs/songs.routes";
 const allroutes = Router();
 
