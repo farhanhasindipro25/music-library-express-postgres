@@ -157,32 +157,76 @@ JOIN
 JOIN
     artists ON album_info.artist_uid = artists.artist_uid;
 
+-- Get one song by ID
+SELECT 
+    songs.song_uid,
+    songs.title AS song_title,
+    songs.duration,
+    albums.title AS album_title,
+    artists.name AS artist_name
+FROM 
+    songs
+JOIN 
+    albums ON songs.album_uid = albums.album_uid
+JOIN
+    album_info ON albums.album_uid = album_info.album_uid
+JOIN
+    artists ON album_info.artist_uid = artists.artist_uid
+WHERE
+    songs.song_uid = $1;
+
 -- Get all albums and the songs of the album
 SELECT 
+    albums.album_uid,
     albums.title AS album_title,
     albums.release_year,
     albums.genre,
-    songs.title AS song_title,
-    songs.duration
+    json_agg(json_build_object(
+        'title', songs.title,
+        'duration', songs.duration
+    )) AS songs
 FROM 
     albums
 JOIN 
     songs ON albums.album_uid = songs.album_uid
-ORDER BY 
-    albums.title, songs.song_uid;  
+GROUP BY 
+    albums.album_uid,albums.title, albums.release_year, albums.genre;
+
 
 -- Get information about one album and its songs
 SELECT 
+    albums.album_uid,
     albums.title AS album_title,
     albums.release_year,
     albums.genre,
-    songs.title AS song_title,
-    songs.duration
+    json_agg(json_build_object(
+        'title', songs.title,
+        'duration', songs.duration
+    )) AS songs
 FROM 
     albums
 JOIN 
     songs ON albums.album_uid = songs.album_uid
 WHERE 
-    albums.album_uid=1
-ORDER BY 
-    songs.song_uid;  
+    albums.album_uid = 1
+GROUP BY 
+    albums.album_uid, albums.title, albums.release_year, albums.genre;
+
+
+SELECT 
+    albums.album_uid,
+    albums.title AS album_title,
+    albums.release_year,
+    albums.genre,
+    json_agg(json_build_object(
+        'title', songs.title,
+        'duration', songs.duration
+    )) AS songs
+FROM 
+    albums
+JOIN 
+    songs ON albums.album_uid = songs.album_uid
+WHERE 
+    albums.album_uid = 1
+GROUP BY 
+    albums.album_uid, albums.title, albums.release_year, albums.genre;
