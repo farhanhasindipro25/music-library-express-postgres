@@ -29,7 +29,23 @@ const getAlbumByID = (req: Request, res: Response) => {
   );
 };
 
+const addAlbum = (req: Request, res: Response) => {
+  const { title, release_year, genre, total_songs } = req.body;
+  pool.query(
+    AlbumsServices.POST_ALBUM_INTO_DB,
+    [title, release_year, genre, total_songs],
+    (error: any) => {
+      if (error) throw error;
+      res.status(201).json({
+        message: "Album added successfully",
+        album: { title, release_year, genre, total_songs },
+      });
+    }
+  );
+};
+
 export const AlbumsController = {
   getAlbums,
   getAlbumByID,
+  addAlbum,
 };
