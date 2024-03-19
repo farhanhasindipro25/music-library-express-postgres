@@ -6,7 +6,7 @@ function jwtHelper(user: UserInterface) {
     user,
     process.env.ACCESS_TOKEN_SECRET as Secret,
     {
-      expiresIn: "20s",
+      expiresIn: "1m",
     }
   );
   const refreshToken = jwt.sign(

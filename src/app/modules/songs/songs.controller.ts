@@ -33,7 +33,7 @@ const addSong = (req: Request, res: Response) => {
     (error: any) => {
       if (error) res.status(500).send("Internal Server Error");
       res.status(201).json({
-        message: "Artist added successfully",
+        message: "Song added successfully",
         artist: { title, duration, album_uid, artist_uid },
       });
     }
